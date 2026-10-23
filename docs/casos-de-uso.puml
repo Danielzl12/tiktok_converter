@@ -1,0 +1,41 @@
+@startuml casos-de-uso
+skinparam linetype ortho
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam backgroundColor #FFFFFF
+skinparam actorBorderColor #9C4A2E
+skinparam usecaseBorderColor #9C4A2E
+skinparam usecaseBackgroundColor #FBEFE6
+skinparam rectangleBorderColor #6B7F3A
+skinparam ArrowColor #5A3A2A
+left to right direction
+
+title Stickerito · Casos de uso
+
+actor "Usuario" as U
+actor "WhatsApp" as WA
+
+rectangle "Web Stickerito (navegador)" {
+  usecase "CU01 Pegar links\nde stickers" as CU01
+  usecase "CU02 Convertir al\nformato de WhatsApp" as CU02
+  usecase "CU03 Ver vista previa\ny estado" as CU03
+  usecase "CU04 Descargar el\npack (.zip)" as CU04
+}
+
+rectangle "App Stickerito (Android)" {
+  usecase "CU05 Importar\npack (.zip)" as CU05
+  usecase "CU06 Ver packs\nguardados" as CU06
+  usecase "CU07 Añadir pack\na WhatsApp" as CU07
+  usecase "CU08 Borrar pack\nde la app" as CU08
+}
+
+U --> CU01
+U --> CU03
+U --> CU04
+U --> CU05
+U --> CU06
+U --> CU07
+U --> CU08
+CU01 ..> CU02 : <<include>>
+CU07 --> WA
+@enduml
