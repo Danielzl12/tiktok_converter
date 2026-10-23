@@ -1,0 +1,43 @@
+@startuml componentes
+skinparam linetype ortho
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam backgroundColor #FFFFFF
+skinparam componentBorderColor #9C4A2E
+skinparam componentBackgroundColor #FBEFE6
+skinparam packageBorderColor #6B7F3A
+skinparam nodeBorderColor #6B7F3A
+skinparam ArrowColor #5A3A2A
+
+title Stickerito · Componentes
+
+node "CDN de TikTok\n(*.ibyteimg.com, *.tiktokcdn.com)" as CDN
+
+package "Web · GitHub Pages (corre en el navegador)" {
+  component "ui\n(pantalla)" as WUI
+  component "tiktok\n(validar link y descargar)" as WTK
+  component "conversion\n(WebP 512, compresión, zip)\n[Web Worker]" as WCV
+}
+
+artifact "pack .zip\n(pack.json + tray.png + .webp)" as ZIP
+
+package "App Android (Flutter)" {
+  component "ui\n(pantallas + view models)" as AUI
+  component "data\n(repositorio de packs)" as ADT
+  component "services\n(leer .zip, puente a WhatsApp)" as ASV
+  component "StickerContentProvider\n(Kotlin)" as ACP
+}
+
+node "WhatsApp\n(lee los stickers\ndel ContentProvider)" as WA
+
+WUI --> WTK
+WUI --> WCV
+WTK --> CDN : fetch HTTPS
+WCV --> ZIP : genera
+ZIP --> ASV : el usuario lo abre\ncon la app
+AUI --> ADT
+ADT --> ASV
+ASV --> ACP : registra packs
+ASV --> WA : intent ENABLE_STICKER_PACK
+WA --> ACP
+@enduml
