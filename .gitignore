@@ -1,0 +1,46 @@
+# Secretos
+.env
+.env.*
+!.env.example
+*.jks
+*.keystore
+key.properties
+*.pem
+*.p12
+
+# Archivos de IA
+CLAUDE.md
+GEMINI.md
+AGENTS.md
+.claude/
+.gemini/
+.agents/
+.agent/
+.mcp.json
+docs/prompts-agentes.md
+docs/estado-proyecto.md
+skills-lock.json
+
+# Sistema / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.iml
+
+# Web (Node / Vite)
+node_modules/
+dist/
+coverage/
+
+# App (Flutter / Android)
+build/
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.pub-cache/
+local.properties
+.gradle/
+**/android/app/debug
+**/android/app/profile
+**/android/app/release
